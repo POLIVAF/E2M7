@@ -29,6 +29,25 @@ app.get('/usuarios', async (req, res) => {
   }
 });
 
+// consulta parametrizada
+async function obtenerUsuarioPorEmail(email) {
+  try {
+    const consulta = 'SELECT * FROM usuarios WHERE email = $1';
+    const valores = [email];
+
+    const resultado = await pool.query(consulta, valores);
+
+    console.log(`Resultado para ${email}:`, resultado.rows);
+  } catch (error) {
+    console.error('❌ Error al buscar usuario por email:', error.message);
+  }
+}
+
+// Pruebas
+obtenerUsuarioPorEmail('test@correo.com');      // email que SÍ exista en tu DB
+obtenerUsuarioPorEmail('noexiste@correo.com');  // email que NO exista
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Servidor corriendo en http://localhost:${PORT}/usuarios`)

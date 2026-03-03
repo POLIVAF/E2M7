@@ -30,6 +30,9 @@ async function query(text, params = []) {
     return result;
   } catch (err) {
     console.error("❌ Error ejecutando query:", err.message);
+    console.error("SQL:", text);  // Agrega esta línea para mostrar la consulta SQL
+    console.error("Params:", params); // Agrega esta línea para mostrar los parámetros
+    console.error("Mensaje:", err.message); // Agrega esta línea para mostrar el mensaje de error
     throw err;
   }
 }
