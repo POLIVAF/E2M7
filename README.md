@@ -59,6 +59,7 @@ const resultado = await pool.query(consulta, valores);
 ├── db.js
 ├── .env
 ├── package.json
+└── README.md
 
 
 ## 🧪 Pruebas
